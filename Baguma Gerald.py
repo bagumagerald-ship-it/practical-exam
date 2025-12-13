@@ -1,6 +1,6 @@
-# UGANDA MARTYRS UNIVERSITY - NKOZI
+# UGANDA MARTYRS UNIVERSITY
 # CSC 63101: DATA MINING AND BUSINESS INTELLIGENCE
-# QUESTION 3: Association Rule Mining (Apriori Algorithm)
+# QUESTION 3: Association Rule Mining -Apriori Algorithm
 # Student: Baguma Gerald
 
 import pandas as pd
@@ -63,4 +63,5 @@ print(rules)
 # Sorting rules by Lift to get the strongest ones
 top_rules = rules.sort_values("lift", ascending=False).head(3)
 print("\nTop 3 Strongest Rules Based on Lift:")
+
 print(top_rules)
