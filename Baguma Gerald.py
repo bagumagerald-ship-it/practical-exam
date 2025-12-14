@@ -1,7 +1,7 @@
 # UGANDA MARTYRS UNIVERSITY
-# CSC 63101: DATA MINING AND BUSINESS INTELLIGENCE
+# DATA MINING AND BUSINESS INTELLIGENCE
 # QUESTION 3: Association Rule Mining -Apriori Algorithm
-# Student: Baguma Gerald
+# Name: Baguma Gerald
 
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
@@ -27,7 +27,7 @@ data = {
 }
 df = pd.DataFrame(data) #coverting the data into a structured table
 
-# Convert the comma-separated strings into lists
+# Converting the comma-separated strings into lists
 transactions = []
 for x in df["Items"]:
     items = [item.strip() for item in x.split(",")]
@@ -65,3 +65,4 @@ top_rules = rules.sort_values("lift", ascending=False).head(3)
 print("\nTop 3 Strongest Rules Based on Lift:")
 
 print(top_rules)
+
