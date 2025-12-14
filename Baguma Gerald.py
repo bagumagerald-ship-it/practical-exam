@@ -67,12 +67,3 @@ rules = rules[["antecedents", "consequents", "support", "confidence", "lift"]]
 
 print("\nAssociation Rules:")
 print(rules)
-
-# PART C: INTERPRETATION
-
-# Top 3 strongest rules based on Lift
-top_rules = rules.sort_values(by="lift", ascending=False).head(3)
-
-print("\nTop 3 Strongest Rules Based on Lift:")
-print(top_rules)
-
