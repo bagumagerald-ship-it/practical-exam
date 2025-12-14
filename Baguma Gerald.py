@@ -1,5 +1,5 @@
-# UGANDA MARTYRS UNIVERSITY# UGANDA MARTYRS UNIVERSITY - NKOZI
-# CSC 63101: DATA MINING AND BUSINESS INTELLIGENCE
+# UGANDA MARTYRS UNIVERSITY
+# DATA MINING AND BUSINESS INTELLIGENCE Practical Exam
 # QUESTION 3: Association Rule Mining (Apriori Algorithm)
 # Name: Baguma Gerald
 # student number: 2023 - B072 - 31712
@@ -75,3 +75,4 @@ top_rules = rules.sort_values(by="lift", ascending=False).head(3)
 
 print("\nTop 3 Strongest Rules Based on Lift:")
 print(top_rules)
+
