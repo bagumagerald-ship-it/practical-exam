@@ -52,17 +52,17 @@ print(frequent_items)
 
 # Generating association rules with confidence >= 0.5
 rules = association_rules(frequent_items, metric="confidence", min_threshold=0.5)
-
-# Selecting only the key metrics
+# Selecting
 rules = rules[["antecedents", "consequents", "support", "confidence", "lift"]]
-print("\nAssociation Rules:")
+print("\n Association Rules:")
 print(rules)
 
-# PART C: INTERPRETATION (TOP 3 RULES)
+# PART C: INTERPRETATION
 
 # Sorting rules by Lift to get the strongest ones
 top_rules = rules.sort_values("lift", ascending=False).head(3)
-print("\nTop 3 Strongest Rules Based on Lift:")
+print("\nTop 3 Strongest rules based on Lift:")
 
 print(top_rules)
+
 
