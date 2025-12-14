@@ -1,7 +1,8 @@
-# UGANDA MARTYRS UNIVERSITY
-# DATA MINING AND BUSINESS INTELLIGENCE
-# QUESTION 3: Association Rule Mining -Apriori Algorithm
+# UGANDA MARTYRS UNIVERSITY# UGANDA MARTYRS UNIVERSITY - NKOZI
+# CSC 63101: DATA MINING AND BUSINESS INTELLIGENCE
+# QUESTION 3: Association Rule Mining (Apriori Algorithm)
 # Name: Baguma Gerald
+# student number: 2023 - B072 - 31712
 
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
@@ -9,7 +10,7 @@ from mlxtend.frequent_patterns import apriori, association_rules
 
 # PART A: DATA PREPARATION
 
-# Creating the dataset manually since it's small
+# Creating the dataset manually
 data = {
     "TID": [1,2,3,4,5,6,7,8,9,10],
     "Items": [
@@ -25,44 +26,52 @@ data = {
         "Milk, Butter"
     ]
 }
-df = pd.DataFrame(data) #coverting the data into a structured table
 
-# Converting the comma-separated strings into lists
+# Converting to DataFrame
+df = pd.DataFrame(data)
+
+# Displaying the dataset
+print("Original Transaction Dataset:")
+print(df)
+
+# Converting strings into lists
 transactions = []
-for x in df["Items"]:
-    items = [item.strip() for item in x.split(",")]
-    transactions.append(items)
+for items in df["Items"]:
+    transaction = [item.strip() for item in items.split(",")]
+    transactions.append(transaction)
 
-print("Transactions:\n", transactions[:5])
+print("\nTransactions:")
+print(transactions)
 
-# One-hot encode the dataset for Apriori
+# One-hot encode the dataset
 encoder = TransactionEncoder()
-encoded_arr = encoder.fit(transactions).transform(transactions)
-df_encoded = pd.DataFrame(encoded_arr, columns=encoder.columns_)
+encoded_array = encoder.fit(transactions).transform(transactions)
+df_encoded = pd.DataFrame(encoded_array, columns=encoder.columns_)
 
-print("\nOne-Hot Encoded Format:")
-print(df_encoded.head())
+print("\nOne-Hot Encoded Dataset:")
+print(df_encoded)
 
 # PART B: APRIORI ALGORITHM
 
-# Running the Apriori algorithm with minimum support of 0.2
-frequent_items = apriori(df_encoded, min_support=0.2, use_colnames=True)
-print("\nFrequent Itemsets:")
-print(frequent_items)
+# Applying Apriori with minimum support of 0.2
+frequent_itemsets = apriori(df_encoded, min_support=0.2, use_colnames=True)
 
-# Generating association rules with confidence >= 0.5
-rules = association_rules(frequent_items, metric="confidence", min_threshold=0.5)
-# Selecting
+print("\nFrequent Itemsets:")
+print(frequent_itemsets)
+
+# Generating association rules with confidence ≥ 0.5
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.5)
+
+# Selecting key columns
 rules = rules[["antecedents", "consequents", "support", "confidence", "lift"]]
-print("\n Association Rules:")
+
+print("\nAssociation Rules:")
 print(rules)
 
 # PART C: INTERPRETATION
 
-# Sorting rules by Lift to get the strongest ones
-top_rules = rules.sort_values("lift", ascending=False).head(3)
-print("\nTop 3 Strongest rules based on Lift:")
+# Top 3 strongest rules based on Lift
+top_rules = rules.sort_values(by="lift", ascending=False).head(3)
 
+print("\nTop 3 Strongest Rules Based on Lift:")
 print(top_rules)
-
-
